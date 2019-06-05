@@ -64,14 +64,14 @@ def drawLogic(screen):
     if ball_position[0] < 8:
         if ball_position[1] > paddle1_position and ball_position[1] < paddle1_position + PAD_HEIGHT:
             ball_velocity[0] = -1 * ball_velocity[0]
-            ball_velocity[0] += ball_velocity[0] * 0.5
+            ball_velocity[0] += ball_velocity[0] * 0.02
         else:
             spawn_ball(RIGHT)
             scoreRight += 1
     elif ball_position[0] > 592:
         if ball_position[1] > paddle2_position and ball_position[1] < paddle2_position + PAD_HEIGHT:
             ball_velocity[0] = -1 * ball_velocity[0]
-            ball_velocity[0] += ball_velocity[0] * 0.5
+            ball_velocity[0] += ball_velocity[0] * 0.01
         else:
             spawn_ball(LEFT)
             scoreLeft += 1
