@@ -37,13 +37,14 @@ def spawn_ball(direction):
     y_val = 1 #random.randrange(1,3)
     ball_position[0] = WIDTH/2
     ball_position[1] = HEIGHT/2
-    positions = [-10,-9,-8,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9,10]
+    positions = [-4,-5,-3,3,4,5]
     if direction == RIGHT:
-        ball_velocity[0] = random.randrange(3, 8) * x_val
-        ball_velocity[1] = positions[random.randrange(0, 9)] * y_val
+        ball_velocity[0] = random.randrange(4, 8) * x_val
+        ball_velocity[1] = positions[random.randrange(0,5)] * y_val
     else:
-        ball_velocity[0] = random.randrange(-8,-3) * x_val
-        ball_velocity[1] = positions[random.randrange(0,9)] * y_val
+        ball_velocity[0] = random.randrange(-8,-4) * x_val
+        ball_velocity[1] = positions[random.randrange(0,5)] * y_val
+    print(ball_velocity[0])
 
 def new_game():
     global RIGHT, LEFT  # these are numbers
@@ -53,7 +54,6 @@ def drawLogic(screen):
     screen.fill(BLACK)
     global scoreRight, scoreLeft, paddle1_position, paddle2_position ,paddle1_velocity, paddle2_velocity, ball_position, ball_velocity, LEFT, RIGHT
     pygame.draw.circle(screen, WHITE, [int(ball_position[0]), int(ball_position[1])], 20, 0)
-
     ball_position[0] += ball_velocity[0]
     ball_position[1] += ball_velocity[1]
     #keep ball on the screen
@@ -64,14 +64,14 @@ def drawLogic(screen):
     if ball_position[0] < 8:
         if ball_position[1] > paddle1_position and ball_position[1] < paddle1_position + PAD_HEIGHT:
             ball_velocity[0] = -1 * ball_velocity[0]
-            ball_velocity[0] += ball_velocity[0] * 0.02
+            ball_velocity[0] += ball_velocity[0] * 0.2
         else:
             spawn_ball(RIGHT)
             scoreRight += 1
     elif ball_position[0] > 592:
         if ball_position[1] > paddle2_position and ball_position[1] < paddle2_position + PAD_HEIGHT:
             ball_velocity[0] = -1 * ball_velocity[0]
-            ball_velocity[0] += ball_velocity[0] * 0.01
+            ball_velocity[0] += ball_velocity[0] * 0.2
         else:
             spawn_ball(LEFT)
             scoreLeft += 1
